@@ -5,6 +5,7 @@
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
+        "cordova-sqlite-storage": "^1.4.8",
         "onsenui": "2.4.x",
         "react": "15.5.3",
         "react-dom": "15.5.3",
