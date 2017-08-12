@@ -2,6 +2,11 @@
 
     angular.module('todo', ['ionic'])
 
+        .config(function($stateProvider){
+
+          
+        })
+
         .run(function($ionicPlatform) {
           $ionicPlatform.ready(function() {
             if(window.cordova && window.cordova.plugins.Keyboard) {
