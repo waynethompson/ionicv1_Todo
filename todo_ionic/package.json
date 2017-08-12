@@ -33,7 +33,8 @@
             "ionic-plugin-keyboard": {},
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": "Saving location to task"
-            }
+            },
+            "cordova-plugin-camera": {}
         },
         "platforms": [
             "android",

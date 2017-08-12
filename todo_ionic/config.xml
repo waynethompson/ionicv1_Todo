@@ -88,4 +88,5 @@
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Saving location to task" />
     </plugin>
+    <plugin name="cordova-plugin-camera" spec="~2.4.1" />
 </widget>

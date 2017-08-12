@@ -128,6 +128,21 @@
 
         };
 
+        $scope.getPicture = function () {
+            navigator.camera.getPicture(onSuccess, onFail, {
+                quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI
+            });
+
+            function onSuccess(imageURI) {
+                var image = document.getElementById('myImage');
+                image.src = imageURI;
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+        }
 
         // Try to create the first project, make sure to defer
         // this by using $timeout so everything is initialized
@@ -146,10 +161,10 @@
 
         $scope.location = {};
         updateLocation();
-        function updateLocation(){
+        function updateLocation() {
             navigator.geolocation.getCurrentPosition(function (position) {
                 $scope.location.latitude = position.coords.latitude;
-                $scope.location.longitude =  position.coords.longitude;
+                $scope.location.longitude = position.coords.longitude;
             });
         }
     }
