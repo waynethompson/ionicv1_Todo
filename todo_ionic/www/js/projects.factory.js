@@ -1,34 +1,43 @@
-(function() {
+(function () {
 
     function ProjectsFactory() {
         return {
-            all: function() {
-            var projectString = window.localStorage['projects'];
-            if(projectString) {
-                return angular.fromJson(projectString);
-            }
-            return [];
+            all: function () {
+                var projectString = window.localStorage['projects'];
+                if (projectString) {
+                    return angular.fromJson(projectString);
+                }
+                return [];
             },
-            save: function(projects) {
-            window.localStorage['projects'] = angular.toJson(projects);
+            getActiveProject: function () {
+                var p = this.all[this.getLastActiveIndex()];
+                if(!p){
+                    var newP = newProject();
+                    
+                    p = newProject()
+                }
+                return p;
             },
-            newProject: function(projectTitle) {
-            // Add a new project
-            return {
-                title: projectTitle,
-                tasks: []
-            };
+            save: function (projects) {
+                window.localStorage['projects'] = angular.toJson(projects);
             },
-            getLastActiveIndex: function() {
-            return parseInt(window.localStorage['lastActiveProject']) || 0;
+            newProject: function (projectTitle) {
+                // Add a new project
+                return {
+                    title: projectTitle,
+                    tasks: []
+                };
             },
-            setLastActiveIndex: function(index) {
-            window.localStorage['lastActiveProject'] = index;
+            getLastActiveIndex: function () {
+                return parseInt(window.localStorage['lastActiveProject']) || 0;
+            },
+            setLastActiveIndex: function (index) {
+                window.localStorage['lastActiveProject'] = index;
             }
         }
     }
 
     angular.module('todo')
-           .factory('Projects', ProjectsFactory);
+        .factory('Projects', ProjectsFactory);
 
 })();

@@ -1,4 +1,5 @@
-(function () {
+(function(){
+
     TodoController.$inject = [
         '$scope',
         '$timeout',
@@ -144,8 +145,13 @@
             });
         }
     }
-
+    
     angular.module('todo')
-        .controller('TodoCtrl', TodoController)
-
+            .component('ToDoApp', {
+            templateUrl: 'templates/todoApp.html',
+            controller: TodoController
+            // bindings: {
+            //     hero: '='
+            // }
+            });
 })();
