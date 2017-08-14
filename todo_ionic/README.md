@@ -13,3 +13,9 @@ https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/
 
 
 Moving between pages is done using http://ionicframework.com/docs/v1/api/directive/ionNavView/
+
+
+# Security
+To ensure that code cannot be decompiled and read [cordova-uglify](https://github.com/rossmartin/cordova-uglify) was added
+
+

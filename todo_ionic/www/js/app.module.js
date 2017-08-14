@@ -1,4 +1,5 @@
 ﻿(function () {
+    // Please read the README.md file for details of architectural choices.
 
     angular.module('todo', ['ionic'])
 
