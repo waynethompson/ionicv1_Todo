@@ -1,6 +1,5 @@
-(function(){
-
-    TodoController.$inject = [
+(function () {
+    ListPageController.$inject = [
         '$scope',
         '$timeout',
         '$ionicModal',
@@ -11,7 +10,7 @@
         'Tasks',
         'Projects'];
 
-    function TodoController(
+    function ListPageController(
         $scope,
         $timeout,
         $ionicModal,
@@ -145,13 +144,13 @@
             });
         }
     }
-    
+
     angular.module('todo')
-            .component('ToDoApp', {
-            templateUrl: 'templates/todoApp.html',
-            controller: TodoController
+        .component('listpage', {
+            templateUrl: 'js/listPage/listPage.html',
+            controller: ListPageController
             // bindings: {
             //     hero: '='
             // }
-            });
+        });
 })();

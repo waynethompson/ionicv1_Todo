@@ -38,6 +38,6 @@
     }
 
     angular.module('todo')
-           .factory('Tasks', TaskssFactory);
+           .factory('Tasks', TaskFactory);
 
 })();

@@ -6,13 +6,11 @@
             $stateProvider
                 .state('list', {
                     url: '/',
-                    templateUrl: 'templates/contact.html',
-                    controller: 'ContactController'
+                    template: '<listpage></listpage>'
                 })
                 .state('task', {
                     url: '/task',
-                    templateUrl: 'templates/findLocation.html',
-                    controller: 'FindLocationController'
+                    template: '<taskpage></taskpage>'
                 });
 
             $urlRouterProvider.otherwise("/");

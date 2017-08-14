@@ -11,3 +11,5 @@ camera accessed with cordova-plugin-camera
 https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/
 
 
+
+Moving between pages is done using http://ionicframework.com/docs/v1/api/directive/ionNavView/

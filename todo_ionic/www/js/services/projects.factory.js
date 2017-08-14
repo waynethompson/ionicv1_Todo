@@ -12,9 +12,9 @@
             getActiveProject: function () {
                 var p = this.all[this.getLastActiveIndex()];
                 if(!p){
-                    var newP = newProject();
+                    var newP = this.newProject();
                     
-                    p = newProject()
+                    p = this.newProject()
                 }
                 return p;
             },
