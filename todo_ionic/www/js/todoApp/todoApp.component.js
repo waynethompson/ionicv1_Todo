@@ -1,13 +1,8 @@
-(function(){
+(function () {
 
-
-    
     angular.module('todo')
-            .component('todoapp', {
+        .component('todoapp', {
             templateUrl: 'js/todoApp/todoApp.html',
-            // controller: TodoController
-            // bindings: {
-            //     hero: '='
-            // }
-            });
+        });
+
 })();

@@ -8,7 +8,8 @@
         '$ionicPopover',
         '$timeout',
         'Tasks',
-        'Projects'];
+        'Projects',
+        'Location'];
 
     function ListPageController(
         $scope,
@@ -18,43 +19,38 @@
         $ionicActionSheet,
         $ionicPopover,
         $timeout,
-        Tasks,
-        Projects
+        TaskService,
+        ProjectsService,
+        LocationService
     ) {
-        var vm = this;
-        vm.Tasks = Tasks.Tasks;
 
-        // Grab the last active, or the first project
-        $scope.activeProject = Projects.getActiveProject();
+        $scope.tasks = TaskService.Tasks;
 
-        // Create our modal
-        $ionicModal.fromTemplateUrl('new-task.html', function (modal) {
+        // Create the modal
+        $ionicModal.fromTemplateUrl('js/taskPage/new-task.html', function (modal) {
             $scope.taskModal = modal;
         }, {
                 scope: $scope
             });
 
+        // Task Methods
         $scope.createTask = function (task) {
-            if (!$scope.activeProject || !task) {
+            if (!task) {
                 return;
             }
-            $scope.activeProject.tasks.push({
-                title: task.title,
-                description: task.description,
-                completed: false,
-                location: $scope.location
-            });
+
+            TaskService.addTask(task);
             $scope.taskModal.hide();
-
-            // Inefficient, but save all the projects
-            Projects.save($scope.projects);
-
-            task.title = "";
         };
 
         $scope.newTask = function () {
+            $scope.task = {};
+            LocationService.UpdateLocation();
+            $scope.location = LocationService.location;
             $scope.taskModal.show();
         };
+
+        $scope.deleteTask = function () { }
 
         $scope.closeNewTask = function () {
             $scope.taskModal.hide();
@@ -64,40 +60,49 @@
         //     $ionicSideMenuDelegate.toggleLeft();
         // };
 
-
-        // $ionicPopover.fromTemplateUrl('CreateItem.html', {
-        //     scope: $scope
-        // })
-        //     .then(function (popover) {
-        //         $scope.popover = popover;
-        //     });
-
-
-        // $scope.openPopover = function ($event) {
-        //     $scope.popover.show($event);
-        // };
-
         // Triggered on a button click, or some other target
         $scope.showActionSheet = function () {
 
             // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
-                    { text: '<b>Share</b> This' },
-                    { text: 'Move' }
+                    { text: '<b>Share</b> all' },
+                    { text: '<b>Share</b> completed' },
+                    { text: '<b>Share</b> incomplete' }
+                   
                 ],
-                destructiveText: 'Delete',
-                titleText: 'Modify your album',
+                destructiveText: 'Clear List',
+                titleText: 'Task Function',
                 cancelText: 'Cancel',
                 cancel: function () {
-                    // add cancel code..
+                    // do nothing
                 },
                 buttonClicked: function (index) {
+                    console.log(index);
+                    switch (index) {
+                        case 0:
+
+                            break;
+                        case 1:
+
+                            break;
+                        case 3:
+
+                            break;
+
+                    }
                     return true;
+                },
+                destructiveButtonClicked: function(){
+                    TaskService.clearList();
+
+                    //TODO - remove this
+                    $scope.tasks = TaskService.Tasks;
+                    
                 }
             });
 
-            // For example's sake, hide the sheet after two seconds
+            // hide the sheet after two seconds
             $timeout(function () {
                 hideSheet();
             }, 2000);
@@ -120,37 +125,29 @@
             }
         }
 
-        // Try to create the first project, make sure to defer
-        // this by using $timeout so everything is initialized
-        // properly
-        $timeout(function () {
-            if ($scope.projects.length == 0) {
-                while (true) {
-                    var projectTitle = prompt('Your first project title:');
-                    if (projectTitle) {
-                        createProject(projectTitle);
-                        break;
-                    }
-                }
-            }
-        }, 1000);
+        // // Try to create the first project, make sure to defer
+        // // this by using $timeout so everything is initialized
+        // // properly
+        // $timeout(function () {
+        //     if ($scope.projects.length == 0) {
+        //         while (true) {
+        //             var projectTitle = prompt('Your first project title:');
+        //             if (projectTitle) {
+        //                 createProject(projectTitle);
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }, 1000);
 
-        $scope.location = {};
-        updateLocation();
-        function updateLocation() {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                $scope.location.latitude = position.coords.latitude;
-                $scope.location.longitude = position.coords.longitude;
-            });
-        }
+        // storing the location when the app is opened. 
+        // this is again called when  a task is created        
+        $scope.location = LocationService.location;
     }
 
     angular.module('todo')
         .component('listpage', {
             templateUrl: 'js/listPage/listPage.html',
             controller: ListPageController
-            // bindings: {
-            //     hero: '='
-            // }
         });
 })();

@@ -9,6 +9,7 @@
                 }
                 return [];
             },
+
             getActiveProject: function () {
                 var p = this.all[this.getLastActiveIndex()];
                 if(!p){
@@ -18,9 +19,11 @@
                 }
                 return p;
             },
+
             save: function (projects) {
                 window.localStorage['projects'] = angular.toJson(projects);
             },
+
             newProject: function (projectTitle) {
                 // Add a new project
                 return {
@@ -28,9 +31,11 @@
                     tasks: []
                 };
             },
+            
             getLastActiveIndex: function () {
                 return parseInt(window.localStorage['lastActiveProject']) || 0;
             },
+
             setLastActiveIndex: function (index) {
                 window.localStorage['lastActiveProject'] = index;
             }
