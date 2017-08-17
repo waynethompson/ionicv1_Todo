@@ -10,7 +10,7 @@
         "gulp-clean-css": "^3.7.0",
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^3.1.0",
-        "ionic": "3.7.0"
+        "ionic": "3.9.1"
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
@@ -37,7 +37,10 @@
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": "Saving location to task"
             },
-            "cordova-plugin-camera": {}
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": "take photo for messages",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": "saved for tasks"
+            }
         },
         "platforms": [
             "android",

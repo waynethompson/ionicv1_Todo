@@ -12,7 +12,8 @@
             getLastActiveIndex: getLastActiveIndex,
             setLastActiveIndex: setLastActiveIndex,
             clearList: clearList,
-            addTask: addTask
+            addTask: addTask,
+            deleteTask: deleteTask
         }
 
         function getAll() {
@@ -57,6 +58,10 @@
                 location: LocationService.location,
                 created: Date.now()
             });
+        }
+
+        function deleteTask(task){
+            tasks.splice(tasks.indexOf(task), 1);
         }
     }
 

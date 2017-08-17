@@ -9,7 +9,8 @@
         '$timeout',
         'Tasks',
         'Projects',
-        'Location'];
+        'Location',
+        'Camera'];
 
     function ListPageController(
         $scope,
@@ -21,10 +22,29 @@
         $timeout,
         TaskService,
         ProjectsService,
-        LocationService
+        LocationService,
+        CameraService
     ) {
 
         $scope.tasks = TaskService.Tasks;
+        $scope.showDelete = false;
+
+        $scope.takePicture = function (options) {
+
+            var options = {
+                quality: 75,
+                targetWidth: 200,
+                targetHeight: 200,
+                sourceType: 1
+            };
+
+            CameraService.getPicture(options).then(function (imageData) {
+                $scope.task.img = imageData;;
+            }, function (err) {
+                console.log(err);
+            });
+
+        };
 
         // Create the modal
         $ionicModal.fromTemplateUrl('js/taskPage/new-task.html', function (modal) {
@@ -50,15 +70,14 @@
             $scope.taskModal.show();
         };
 
-        $scope.deleteTask = function () { }
+        $scope.deleteTask = function (task) {
+            console.log(task);
+            TaskService.deleteTask(task);
+        }
 
         $scope.closeNewTask = function () {
             $scope.taskModal.hide();
         }
-
-        // $scope.toggleProjects = function () {
-        //     $ionicSideMenuDelegate.toggleLeft();
-        // };
 
         // Triggered on a button click, or some other target
         $scope.showActionSheet = function () {
@@ -69,7 +88,7 @@
                     { text: '<b>Share</b> all' },
                     { text: '<b>Share</b> completed' },
                     { text: '<b>Share</b> incomplete' }
-                   
+
                 ],
                 destructiveText: 'Clear List',
                 titleText: 'Task Function',
@@ -93,12 +112,12 @@
                     }
                     return true;
                 },
-                destructiveButtonClicked: function(){
+                destructiveButtonClicked: function () {
                     TaskService.clearList();
 
                     //TODO - remove this
                     $scope.tasks = TaskService.Tasks;
-                    
+
                 }
             });
 
@@ -108,37 +127,6 @@
             }, 2000);
 
         };
-
-        $scope.getPicture = function () {
-            navigator.camera.getPicture(onSuccess, onFail, {
-                quality: 50,
-                destinationType: Camera.DestinationType.FILE_URI
-            });
-
-            function onSuccess(imageURI) {
-                var image = document.getElementById('myImage');
-                image.src = imageURI;
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
-        }
-
-        // // Try to create the first project, make sure to defer
-        // // this by using $timeout so everything is initialized
-        // // properly
-        // $timeout(function () {
-        //     if ($scope.projects.length == 0) {
-        //         while (true) {
-        //             var projectTitle = prompt('Your first project title:');
-        //             if (projectTitle) {
-        //                 createProject(projectTitle);
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }, 1000);
 
         // storing the location when the app is opened. 
         // this is again called when  a task is created        
