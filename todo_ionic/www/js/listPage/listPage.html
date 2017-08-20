@@ -2,7 +2,7 @@
   <!-- Center content -->
   <ion-side-menu-content class="has-footer">
 
-    <ion-header-bar class="bar-dark">
+    <ion-header-bar class="bar-royal">
       <!-- <button class="button button-icon" ng-click="toggleProjects()">
           <i class="icon ion-navicon"></i>
         </button> -->
@@ -18,10 +18,11 @@
         </button>
     </ion-header-bar>
 
-    <ion-content scroll="false">
+    <ion-content ><!--scroll="false"-->
+
       <ion-list show-delete="showDelete">
 
-      <ion-item ng-repeat="task in tasks" item="task">
+      <ion-item ng-repeat="task in tasks | orderBy:'-created'" item="task">
           <!-- <ion-checkbox ng-model="task.completed"></ion-checkbox> -->
           <!-- <i class="icon ion-ios-circle-outline"></i>
           <i class="icon ion-checkmark-circled"></i> -->
@@ -34,10 +35,11 @@
                              ng-click="editTask(task)">
             Edit
           </ion-option-button>
-          <ion-option-button class="button-calm" 
+          
+          <!-- <ion-option-button class="button-calm" 
                              ng-click="share(task)">
             Share
-          </ion-option-button>
+          </ion-option-button> -->
           <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button> -->
         </ion-item>
 

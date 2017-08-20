@@ -6,7 +6,8 @@
         var tasks = getAll();
 
         return {
-            Tasks:tasks,            
+            Tasks:tasks,   
+            currentTask:{},         
             all: getAll,
             save: save,
             newtask: newTask,
@@ -71,6 +72,7 @@
 
         function deleteTask(task){
             tasks.splice(tasks.indexOf(task), 1);
+            saveAll();
         }
     }
 

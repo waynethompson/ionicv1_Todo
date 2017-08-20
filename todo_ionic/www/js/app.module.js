@@ -12,6 +12,10 @@
                 .state('task', {
                     url: '/task',
                     template: '<taskpage></taskpage>'
+                })
+                .state('email', {
+                    url: '/email',
+                    template: '<emailtaskpage></emailtaskpage>'
                 });
 
             $urlRouterProvider.otherwise("/");

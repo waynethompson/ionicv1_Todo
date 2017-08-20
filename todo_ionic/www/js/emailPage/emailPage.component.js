@@ -16,14 +16,14 @@
         }
 
         $scope.sendEmail = function(){
-            
+
         }
 
     }
 
     angular.module('todo')
         .component('emailtaskpage', {
-            templateUrl: 'js/emailPage/emailTask.html',
+            templateUrl: 'js/emailPage/emailPage.html',
             controller: EmailTaskController
         });
 })();

@@ -2,7 +2,7 @@
 
     function emailService(){
         return{
-            sendHtmlEmail: sendHtmlEmail
+            sendHtmlEmail: sendHtmlEmail,
         }
 
         function sendHtmlEmail(to, subject, body){

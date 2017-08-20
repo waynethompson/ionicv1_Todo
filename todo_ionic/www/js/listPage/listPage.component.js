@@ -1,6 +1,7 @@
 (function () {
     ListPageController.$inject = [
         '$scope',
+        '$state',
         '$timeout',
         '$ionicModal',
         '$ionicSideMenuDelegate',
@@ -15,6 +16,7 @@
 
     function ListPageController(
         $scope,
+        $state,
         $timeout,
         $ionicModal,
         $ionicSideMenuDelegate,
@@ -27,7 +29,6 @@
         CameraService,
         EmailService
     ) {
-
         $scope.tasks = TaskService.Tasks;
         $scope.showDelete = false;
 
@@ -58,7 +59,9 @@
         }
 
         $scope.editTask= function(task){
-
+            TaskService.currentTask = task;
+            $scope.task=TaskService.currentTask;
+            $scope.taskModal.show();            
         }
 
         $scope.takePicture = function (options) {
@@ -106,7 +109,7 @@
                     console.log(index);
                     switch (index) {
                         case 0:
-
+                            //EmailService.
                             break;
                         case 1:
 
@@ -114,8 +117,8 @@
                         case 3:
 
                             break;
-
                     }
+                    $state.go('email');                    
                     return true;
                 },
                 destructiveButtonClicked: function () {
