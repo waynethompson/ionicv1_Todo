@@ -7,7 +7,7 @@
         return {
             getPicture: function (options) {
                 var q = $q.defer();
-
+                
                 navigator.camera.getPicture(function (result) {
                     q.resolve(result);
                 }, function (err) {
@@ -24,7 +24,6 @@
         }
     }
 
-    // service is used rather than a factory because it doesn't need to maintain state.
     angular.module('todo')
         .factory('Camera', cameraService);
 

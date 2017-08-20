@@ -2,7 +2,8 @@
 
     taskFactory.$inject = ['Location'];
     function taskFactory(LocationService) {
-        var tasks = [];
+        
+        var tasks = getAll();
 
         return {
             Tasks:tasks,            
@@ -17,16 +18,22 @@
         }
 
         function getAll() {
-            // TODO - change this to use sql
-            var tasksString = window.localStorage['tasks'];
-            if(taskString) {
-                tasks = angular.fromJson(taskString);
+
+            if(localStorage.getItem('tasks') != null) {
+                tasks = angular.fromJson(localStorage.getItem('tasks'));
+            }else{
+                tasks = [];
             }
+
             return tasks;
         }
 
         function save(tasks) {
             window.localStorage['tasks'] = angular.toJson(tasks);
+        }
+
+        function saveAll(){
+            save(tasks);
         }
 
         function newTask(taskTitle) {
@@ -58,6 +65,8 @@
                 location: LocationService.location,
                 created: Date.now()
             });
+
+            saveAll();
         }
 
         function deleteTask(task){

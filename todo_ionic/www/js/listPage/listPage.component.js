@@ -10,7 +10,8 @@
         'Tasks',
         'Projects',
         'Location',
-        'Camera'];
+        'Camera',
+        'Email'];
 
     function ListPageController(
         $scope,
@@ -23,35 +24,12 @@
         TaskService,
         ProjectsService,
         LocationService,
-        CameraService
+        CameraService,
+        EmailService
     ) {
 
         $scope.tasks = TaskService.Tasks;
         $scope.showDelete = false;
-
-        $scope.takePicture = function (options) {
-
-            var options = {
-                quality: 75,
-                targetWidth: 200,
-                targetHeight: 200,
-                sourceType: 1
-            };
-
-            CameraService.getPicture(options).then(function (imageData) {
-                $scope.task.img = imageData;;
-            }, function (err) {
-                console.log(err);
-            });
-
-        };
-
-        // Create the modal
-        $ionicModal.fromTemplateUrl('js/taskPage/new-task.html', function (modal) {
-            $scope.taskModal = modal;
-        }, {
-                scope: $scope
-            });
 
         // Task Methods
         $scope.createTask = function (task) {
@@ -78,6 +56,34 @@
         $scope.closeNewTask = function () {
             $scope.taskModal.hide();
         }
+
+        $scope.editTask= function(task){
+
+        }
+
+        $scope.takePicture = function (options) {
+            
+                        var options = {
+                            quality: 75,
+                            targetWidth: 200,
+                            targetHeight: 200,
+                            sourceType: 1
+                        };
+            
+                        CameraService.getPicture(options).then(function (imageData) {
+                            $scope.task.img = imageData;;
+                        }, function (err) {
+                            console.log(err);
+                        });
+            
+                    };
+            
+                    // Create the modal
+                    $ionicModal.fromTemplateUrl('js/taskPage/new-task.html', function (modal) {
+                        $scope.taskModal = modal;
+                    }, {
+                            scope: $scope
+                        });
 
         // Triggered on a button click, or some other target
         $scope.showActionSheet = function () {

@@ -20,12 +20,24 @@
               <textarea placeholder="Description"
                 ng-model="task.description"></textarea>
             </label>
-      </div>
 
-      {{ location.latitude }} {{ location.longitude }}
-      <span class="btn btn-primary" ng-click="takePicture()">photo</span>
-      <img data-ng-src="data:image/png;base64,{{task.img}}" data-err-src="img/default.png" ng-click="takePicture()" style="width:200px;height:150xp;"
-      />
+     <img data-ng-src="data:image/png;base64,{{task.img}}" data-err-src="img/default.png" ng-click="takePicture()" style="width:200px;height:150xp;"
+            />
+      <span class="button button-stable" 
+            ng-click="takePicture()">photo</span>
+            <div class="item item-divider">
+              Current Location
+            </div>
+            <label class="item item-input">
+            long: {{ location.latitude }} 
+            </label>
+            <label class="item item-input">
+            lat: {{ location.longitude }}
+            </label>
+
+          </div>
+          
+
 
       <div class="padding">
         <button type="submit" class="button button-block button-positive">Create Task</button>

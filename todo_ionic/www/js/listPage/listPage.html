@@ -6,7 +6,8 @@
       <!-- <button class="button button-icon" ng-click="toggleProjects()">
           <i class="icon ion-navicon"></i>
         </button> -->
-      <button class="button button-icon icon ion-ios-minus-outline" ng-click="showDelete = !showDelete; showReorder = false"></button>      {{showDelete}}
+      <button class="button button-icon icon ion-ios-minus-outline" 
+              ng-click="showDelete = !showDelete; showReorder = false"></button>    
       <button class="button button-icon">
           <i class="icon ion-funnel"></i>
         </button>
@@ -19,13 +20,18 @@
 
     <ion-content scroll="false">
       <ion-list show-delete="showDelete">
-        <ion-item ng-repeat="task in tasks" item="task">
+
+      <ion-item ng-repeat="task in tasks" item="task">
+          <!-- <ion-checkbox ng-model="task.completed"></ion-checkbox> -->
+          <!-- <i class="icon ion-ios-circle-outline"></i>
+          <i class="icon ion-checkmark-circled"></i> -->
           {{task.title}}
+          
           <ion-delete-button class="ion-minus-circled" 
                              ng-click="deleteTask(task)">
           </ion-delete-button>
           <ion-option-button class="button-assertive" 
-                             ng-click="edit(task)">
+                             ng-click="editTask(task)">
             Edit
           </ion-option-button>
           <ion-option-button class="button-calm" 
@@ -33,17 +39,21 @@
             Share
           </ion-option-button>
           <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button> -->
-          <!-- <ion-checkbox ng-model="filter.pink">Pink</ion-checkbox> -->
         </ion-item>
-      </ion-list>
-    </ion-content>
 
+        <div class="item" ng-if="tasks.length < 1">
+          Click the button in the top right to create your first task.
+        </div>
+    
+      </ion-list>
+
+    </ion-content>
 
     <ion-footer-bar>
       <div class="buttons">
         <button class="button" ng-click="toggleCompled()">Toggle Completed</button>
       </div>
-      <h1 class="title">Title!</h1>
+      <h1 class="title"></h1>
       <div class="buttons" ng-click="showActionSheet()">
         <button class="button">Task functions</button>
       </div>

@@ -1,0 +1,39 @@
+<div class="modal">
+
+  <!-- Modal header bar -->
+  <ion-header-bar class="bar-secondary">
+    <h1 class="title">Email Task</h1>
+    <button class="button button-clear button-positive" ng-click="closeEmailTask()">Cancel</button>
+  </ion-header-bar>
+
+  <!-- Modal content area -->
+  <ion-content>
+
+    <form ng-submit="sendEmail(email)">
+      <div class="list">
+          <label class="item item-input">
+            <input type="text" 
+              placeholder="to" 
+              ng-model="email.to">
+            </label>
+            
+            <label class="item item-input">
+              <input type="text" 
+              placeholder="Subject" 
+              ng-model="email.subject">
+            </label>
+
+        <label class="item item-input">
+              <textarea placeholder="Description"
+                ng-model="task.description"></textarea>
+            </label>
+            
+            
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">Send Email</button>
+      </div>
+    </form>
+
+  </ion-content>
+
+</div>
