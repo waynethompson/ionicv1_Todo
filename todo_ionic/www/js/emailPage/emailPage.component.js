@@ -1,18 +1,20 @@
 (function () {
     EmailTaskController.$inject = [
         '$scope',
+        '$state',
         'Tasks',
         'Email'];
 
     function EmailTaskController(
         $scope,
+        $state,       
         Tasks,
         emailService
     ) {
         $scope.email;
 
         $scope.closeEmailTask = function(){
-            
+            $state.go('list');   
         }
 
         $scope.sendEmail = function(){
