@@ -1,37 +1,40 @@
-(function(){
-    
-        function contactsService(){
-            var contactList = [];
-            return{
-                getContacts: getContacts,
-                contactList: contactList
-            }
-    
-            function getContacts(){
-                var contactFindOptions = {
-                    filter: "",
-                    multiple: true,
-                  };
-                  
-                navigator.contacts.find(
-                    ["name", "emails"], 
-                    contactSuccess, 
-                    contactError, 
-                    contactFindOptions);
-            }
+(function () {
+    contactsService.$inject = ['$q'];
 
-            function contactSuccess(result){
-                contactList.push(result)
-            }
+    function contactsService($q) {
 
-            function contactError(error){
-                console.log(error);
+        var contactList = [];
+        return {
+            getContacts: getContacts,
+            contactList: contactList
+        }
+
+        function getContacts() {
+            var q = $q.defer();
+            var contactFindOptions = {
+                filter: "",
+                multiple: true,
+            };
+            if(navigator.contacts){
+            navigator.contacts.find(
+                ["displayName", "emails"],
+                function contactSuccess(result) {
+                    q.resolve(result);
+                },
+                function contactError(error) {
+                    q.reject(error);
+                },
+                contactFindOptions);
+            }else{
+                q.resolve([{ displayName: "test", email:"test@somewhere.com" }]);
             }
+            return q.promise;
 
         }
-    
-        angular.module('todo')
-               .factory('Contacts', contactsService);
-    
-        
-    })();
+    }
+
+    angular.module('todo')
+        .factory('Contacts', contactsService);
+
+
+})();

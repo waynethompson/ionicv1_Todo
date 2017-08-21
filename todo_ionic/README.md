@@ -6,16 +6,30 @@ Coding style is as per [Angular 1 Style Guide](https://github.com/johnpapa/angul
 
 The usage of cordova plugins is wrapped in angular services to enable reusability in the future.
 
+Moving between pages is done using [Ionic Nav View](http://ionicframework.com/docs/v1/api/directive/ionNavView/)
+
 # Getting Started
+
+Install global dependencies
+```
+sudo npm i -g cordova ionic
+```
 
 Install npm packages
 ```
 npm install
 ```
+
 Install bower packages
 ``` 
 bower install
 ```
+
+Start the ionic dev server
+```
+ionic serve
+```
+
 
 # Cordova plugings used
 GeoLocation is found using [cordova-plugin-geolocation](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/)
@@ -23,7 +37,6 @@ GeoLocation is found using [cordova-plugin-geolocation](https://cordova.apache.o
 camera accessed with [cordova-plugin-camera](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/)
 
 
-Moving between pages is done using [Ionic Nav View](http://ionicframework.com/docs/v1/api/directive/ionNavView/)
 
 
 # Security

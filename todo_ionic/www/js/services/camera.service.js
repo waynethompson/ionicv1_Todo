@@ -11,8 +11,8 @@
                 if (navigator.camera) {
                     navigator.camera.getPicture(function (result) {
                         q.resolve(result);
-                    }, function (err) {
-                        q.reject(err);
+                    }, function (error) {
+                        q.reject(error);
                     }, options);
                 } else {
                     $timeout(function () {
