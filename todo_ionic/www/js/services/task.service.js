@@ -10,6 +10,7 @@
             currentTask:{},         
             all: getAll,
             save: save,
+            saveAll: saveAll,
             newtask: newTask,
             getLastActiveIndex: getLastActiveIndex,
             setLastActiveIndex: setLastActiveIndex,

@@ -32,8 +32,8 @@
         $scope.isNewTask = false;
         $scope.showCompleted = true;
 
-        $scope.filterByCompleted = function(task) {
-            if (!$scope.showCompleted && task.completed) 
+        $scope.filterByCompleted = function (task) {
+            if (!$scope.showCompleted && task.completed)
                 return false;
 
             return true;
@@ -47,7 +47,10 @@
 
             // refresh the location
             LocationService.UpdateLocation();
-            $scope.location = LocationService.location;
+            // wait for update and then set location. This could be done in a promise from Location Service
+            $timeout(function () {
+                $scope.task.location = LocationService.location;
+            }, 1000);
 
             // show the task screen
             $scope.taskModal.show();
@@ -57,7 +60,12 @@
             if (!task) {
                 return;
             }
-            TaskService.addTask(task);
+            if ($scope.isNewTask) {
+                TaskService.addTask(task);
+                $scope.isNewTask = false;
+            }else{
+                TaskService.saveAll();
+            }
 
             // hide the task screen
             $scope.taskModal.hide();
@@ -73,13 +81,12 @@
         }
 
         $scope.editTask = function (task) {
-            $scope.isNewTask = false;
             TaskService.currentTask = task;
             $scope.task = TaskService.currentTask;
             $scope.taskModal.show();
         }
 
-        // Create the modal
+        // Create the modal for task editing
         $ionicModal.fromTemplateUrl('js/taskPage/task.html', function (modal) {
             $scope.taskModal = modal;
         }, {

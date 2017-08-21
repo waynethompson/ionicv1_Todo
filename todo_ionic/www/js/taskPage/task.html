@@ -22,15 +22,13 @@
                 ng-model="task.description"></textarea>
             </label>
 
-          <ion-checkbox ng-model="task.completed">Mark Completed</ion-checkbox>
+          <div class="col col-center">
+            <img data-ng-src="data:image/png;base64,{{task.img}}" data-err-src="img/default.png" ng-click="takePicture()" style="max-height:300xp;"
+            />
+          </div>
 
-
-          <img data-ng-src="data:image/png;base64,{{task.img}}" data-err-src="img/default.png" ng-click="takePicture()" style="width:200px;height:150xp;"
-          />
-
-          <span class="button button-stable" ng-click="takePicture()">photo</span>
           <div class="item item-divider">
-            Current Location
+            Location
           </div>
           <label class="item item-input">
             long: {{ location.latitude }} 
@@ -44,8 +42,10 @@
 
 
       <div class="padding">
-        <button type="submit" ng-if="!isNewTask" class="button button-block button-positive">Save Task</button>
-        <button type="submit" ng-if="isNewTask" class="button button-block button-positive">Create Task</button>
+        <ion-checkbox ng-model="task.completed">Mark Completed</ion-checkbox>
+        <span ng-click="takePicture()" class="button button-block button-positive"><i class="icon ion-camera"></i> Attach Photo</span>
+        <button type="submit" class="button button-block button-balanced">
+          {{ (isNewTask) ? 'Create' : 'Save' ;}} Task</button>
       </div>
     </form>
 
