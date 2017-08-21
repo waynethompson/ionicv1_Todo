@@ -4,6 +4,19 @@ AngularJs components were used to ensure easy compatability with Angular 4 in fu
 
 Coding style is as per [Angular 1 Style Guide](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#modules)
 
+The usage of cordova plugins is wrapped in angular services to enable reusability in the future.
+
+# Getting Started
+
+Install npm packages
+```
+npm install
+```
+Install bower packages
+``` 
+bower install
+```
+
 # Cordova plugings used
 GeoLocation is found using [cordova-plugin-geolocation](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/)
 
