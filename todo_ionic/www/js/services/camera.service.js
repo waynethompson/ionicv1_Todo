@@ -8,6 +8,7 @@
         return {
             getPicture: function (options) {
                 var q = $q.defer();
+                //check if camera is available
                 if (navigator.camera) {
                     navigator.camera.getPicture(function (result) {
                         q.resolve(result);
@@ -15,6 +16,7 @@
                         q.reject(error);
                     }, options);
                 } else {
+                    // load an image for testing in the brower
                     $timeout(function () {
                         q.resolve(testImage);
                     }, 2000);

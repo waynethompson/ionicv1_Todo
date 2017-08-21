@@ -9,6 +9,7 @@
         }
 
         function sendHtmlEmail(to, subject, body, callback) {
+            // check is cordova is loaded
             if (window.cordova) {
                 cordova.plugins.email.open({
                     to: to,
@@ -18,6 +19,7 @@
                 },
                 callback);
             }else{
+                // for testing in browser
                 console.error("Cordova is not defined");
                 callback();
             }
