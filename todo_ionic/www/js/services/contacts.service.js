@@ -15,6 +15,8 @@
                 filter: "",
                 multiple: true,
             };
+            // check if contacts is available
+
             if(navigator.contacts){
             navigator.contacts.find(
                 ["displayName", "emails"],
@@ -26,6 +28,7 @@
                 },
                 contactFindOptions);
             }else{
+                // create a single contact for testing in the browser
                 q.resolve([{ displayName: "test", email:"test@somewhere.com" }]);
             }
             return q.promise;
