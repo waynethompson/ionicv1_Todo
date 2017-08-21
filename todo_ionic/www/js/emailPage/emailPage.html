@@ -8,30 +8,28 @@
   <!-- Modal content area -->
   <ion-content>
 
-    <form ng-submit="sendEmail(email)">
-      <div class="list">
-          <label class="item item-input">
-            <input type="text" 
-              placeholder="to" 
-              ng-model="email.to">
-            </label>
+    <ion-list>
+      <ion-item class="item-button-right">
+        <input type="text" placeholder="to" ng-model="email.to" />
+        <span class="button" ng-click="showContacts()">
+          <i class="icon ion-android-contact"></i> contacts
+        </span></ion-item>
 
-            <label class="item item-input">
+      <label class="item item-input">
               <input type="text" 
               placeholder="Subject" 
-              ng-model="email.subject">
+              ng-model="email.subject"/>
+            </label>
+      <div class="item item-divider">
+        Message
+      </div>
+      <label class="item item-input" ng-bind-html="email.html">
             </label>
 
-        <label class="item item-input">
-              <textarea placeholder="Description"
-                ng-model="task.description"></textarea>
-            </label>
-            
-            
-      <div class="padding">
-        <button type="submit" class="button button-block button-positive">Send Email</button>
-      </div>
-    </form>
+    </ion-list>
+    <div class="padding">
+      <button type="submit" ng-click="sendEmail(email)" class="button button-block button-positive">Send Email</button>
+    </div>
 
   </ion-content>
 

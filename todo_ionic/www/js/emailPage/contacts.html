@@ -1,0 +1,16 @@
+<div class="modal">
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar-secondary">
+        <h1 class="title">Select a contact</h1>
+        <button class="button button-clear button-positive" ng-click="closeContacts()">Cancel</button>
+    </ion-header-bar>
+    <!-- Modal content area -->
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="contact in contacts" ng-click="selectContact(contact)">
+                <h2>{{ contact.displayName }}</h2>
+                <p>{{ contact.email }}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>

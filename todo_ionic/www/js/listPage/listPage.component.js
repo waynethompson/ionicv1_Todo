@@ -63,7 +63,7 @@
             if ($scope.isNewTask) {
                 TaskService.addTask(task);
                 $scope.isNewTask = false;
-            }else{
+            } else {
                 TaskService.saveAll();
             }
 
@@ -129,27 +129,36 @@
                     // do nothing
                 },
                 buttonClicked: function (index) {
-                    console.log(index);
+
+                    var selectedTasks;
+
+                    // filter tasks based on button clicked
                     switch (index) {
                         case 0:
-                            //EmailService.
+                            selectedTasks = $scope.tasks;
                             break;
                         case 1:
-
+                            selectedTasks = $scope.tasks.filter(function (task) {
+                                return task.completed;
+                            })
                             break;
-                        case 3:
-
+                        case 2:
+                            selectedTasks = $scope.tasks.filter(function (task) {
+                                return !task.completed;
+                            })
                             break;
                     }
+
+                    // create html from tasks
+                    var html = TaskService.taskArrayAsHtml(selectedTasks);
+                    EmailService.setHtml(html);
+
+                    // go to email page
                     $state.go('email');
                     return true;
                 },
                 destructiveButtonClicked: function () {
                     TaskService.clearList();
-
-                    //TODO - remove this
-                    $scope.tasks = TaskService.Tasks;
-
                 }
             });
 

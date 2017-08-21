@@ -1,13 +1,13 @@
-(function() {
+(function () {
 
     taskFactory.$inject = ['Location'];
     function taskFactory(LocationService) {
-        
+
         var tasks = getAll();
 
         return {
-            Tasks:tasks,   
-            currentTask:{},         
+            Tasks: tasks,
+            currentTask: {},
             all: getAll,
             save: save,
             saveAll: saveAll,
@@ -16,14 +16,15 @@
             setLastActiveIndex: setLastActiveIndex,
             clearList: clearList,
             addTask: addTask,
-            deleteTask: deleteTask
+            deleteTask: deleteTask,
+            taskArrayAsHtml: taskArrayAsHtml
         }
 
         function getAll() {
 
-            if(localStorage.getItem('tasks') != null) {
+            if (localStorage.getItem('tasks') != null) {
                 tasks = angular.fromJson(localStorage.getItem('tasks'));
-            }else{
+            } else {
                 tasks = [];
             }
 
@@ -34,7 +35,7 @@
             window.localStorage['tasks'] = angular.toJson(tasks);
         }
 
-        function saveAll(){
+        function saveAll() {
             save(tasks);
         }
 
@@ -54,12 +55,12 @@
             window.localStorage['lastTaskActiveTask'] = index;
         }
 
-        function clearList(){
+        function clearList() {
             // TODO clear this properly and save to database
             tasks.length = 0;
         }
 
-        function addTask(task){
+        function addTask(task) {
             tasks.push({
                 title: task.title,
                 description: task.description,
@@ -71,13 +72,28 @@
             saveAll();
         }
 
-        function deleteTask(task){
+        function deleteTask(task) {
             tasks.splice(tasks.indexOf(task), 1);
             saveAll();
+        }
+
+        function taskArrayAsHtml(selectedTasks) {
+            var output = '<ul>';
+            if (selectedTasks) {
+                for (var index = 0; index < selectedTasks.length; index++) {
+                    var element = selectedTasks[index];
+                    output += '<li><h2>' + element.title + '</h2><p>' +
+                        element.description +
+                        '</p></li>';
+                }
+            }
+            output += '</ul>';
+
+            return output;
         }
     }
 
     angular.module('todo')
-           .factory('Tasks', taskFactory);
+        .factory('Tasks', taskFactory);
 
 })();
