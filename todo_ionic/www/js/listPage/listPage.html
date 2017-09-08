@@ -18,11 +18,12 @@
               ng-click="editTask(task)" 
               class="item-icon-right item-thumbnail-left"
               item="task">
-
+      <ion-delete-button class="ion-minus-circled" ng-click="deleteTask(task)"></ion-delete-button>
       <img data-ng-src="data:image/png;base64,{{task.img}}" data-err-src="img/default.png" />
       <h2>{{task.title}}</h2>
       <p>{{ task.description }}</p>
       <i ng-if="task.completed" class="icon ion-checkmark-circled"></i>
+
     </ion-item>
 
     <div class="item" ng-if="tasks.length < 1">
